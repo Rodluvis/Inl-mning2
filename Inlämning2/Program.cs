@@ -171,18 +171,18 @@ namespace Inlämning2
                 motivationforprogramming = value;
             }
         }
+
+        public override string ToString()
+        {
+            return $"{name}";
+        }
     }
-
-
-
 }
-
 
 
 class Program
 {
     static List<GroupMember> listOfGroupMembers = new List<GroupMember>();
-
 
     static void Main(string[] args)
     {
@@ -190,15 +190,12 @@ class Program
         //Annars skall ett passande meddelande skrivas ut.
         Console.WriteLine("Welcome to the information hub for Group #2");
         Password();
-
-
     }
 
     static void Password()
     {
         Console.Write("Please enter the name of the group you are trying to reach:");
         string password = Console.ReadLine().Trim().ToLower();
-        bool passCheck = true;
 
         while (password != "götebuggarna")
         {
@@ -207,7 +204,6 @@ class Program
         }
         Console.WriteLine("");
         Console.WriteLine("Correct password, welcome in!");
-        passCheck = false;
         Meny();
     }
 
@@ -223,7 +219,7 @@ class Program
             //i.Varje deltagare skall ha en unik sträng som beskriver personens största driv till programmering.
             //c.Möjligheten att ta bort en person.
             Console.WriteLine("");
-            Console.WriteLine("What would you like to do?  The following options are available");
+            Console.WriteLine("What would you like to do?  The following options are available:");
             Console.WriteLine("1. List group members.");
             Console.WriteLine("2. Print out short bio about each member.");
             Console.WriteLine("3. Print out personal motivation for programming for each group member.");
@@ -249,14 +245,12 @@ class Program
                     break;
             }
 
-
-
         }
     }
 
     static void PrintListOfGroupMembers()
     {
-        Console.WriteLine(string.Join(",", listOfGroupMembers));
+        Console.WriteLine(string.Join(", ", listOfGroupMembers));
 
     }
     static void PrintInfoEachGroupMembers()
@@ -264,7 +258,7 @@ class Program
         int counter = 1;
         foreach (GroupMember person in listOfGroupMembers)
         {
-            Console.WriteLine($"{counter}.{person.Name}, {person.Age}, {person.BirthDate}, {person.HoroscopeSign}, { person.FavouriteFood}, {person.FavouriteBand}, {person.FavouriteMovie}, {person.ILove}, {person.IHate}, {person.SuperPower}");
+            Console.WriteLine($"{counter}.{person.Name}, {person.Age}, {person.BirthDate}, {person.HoroscopeSign}, {person.FavouriteFood}, {person.FavouriteBand}, {person.FavouriteMovie}, {person.ILove}, {person.IHate}, {person.SuperPower}");
             counter++;
         }
 
@@ -274,7 +268,7 @@ class Program
         int counter = 1;
         foreach (GroupMember person in listOfGroupMembers)
         {
-            Console.WriteLine($"{counter}.{person.Name} has the following motivation for learning programming --> {person.MotivationForProgramming}");
+            Console.WriteLine($"{counter}. {person.Name} has the following motivation for learning programming --> {person.MotivationForProgramming}");
             counter++;
         }
     }
@@ -284,10 +278,7 @@ class Program
         Console.WriteLine("Which group member would you like to remove?");
 
         string choice;
-        foreach (GroupMember person in listOfGroupMembers)
-        {
-            Console.Write($"{person.Name}, ");
-        }
+        PrintListOfGroupMembers();
         choice = Console.ReadLine();
 
         for (int i = 0; i < listOfGroupMembers.Count; i++)
@@ -298,15 +289,14 @@ class Program
                 listOfGroupMembers.RemoveAt(i);
             }
         }
-        Console.WriteLine("Uppdated list og group members is:");
-        Console.WriteLine(string.Join(",", listOfGroupMembers));
+        Console.WriteLine("Uppdated list of group members is: ");
+        PrintListOfGroupMembers();
 
     }
 
     static void CreateGroupMember()
     {
-        //Creating obejcts instances of class GroupMember
-
+        //Creating obejct instances of class GroupMember
         GroupMember Andrei = new GroupMember();
         Andrei.Name = "Andrei";
         Andrei.Age = 25;
@@ -348,7 +338,6 @@ class Program
         Leroy.IHate = "Caviar";
         Leroy.SuperPower = "Flying";
         Leroy.MotivationForProgramming = "Dynamic";
-        //Console.WriteLine($"{Leroy.Name}, {Leroy.Age}, {Leroy.BirthDate}, {Leroy.HoroscopeSign}, {Leroy.FavouriteFood}, {Leroy.FavouriteBand}, {Leroy.FavouriteMovie}, {Leroy.ILove}, {Leroy.IHate}, {Leroy.SuperPower}, {Leroy.MotivationForProgramming}");
         listOfGroupMembers.Add(Leroy);
 
         GroupMember MA = new GroupMember();
@@ -363,7 +352,6 @@ class Program
         MA.IHate = "Banana";
         MA.SuperPower = "Mrs. Hindsight";
         MA.MotivationForProgramming = "Creative process";
-        // Console.WriteLine($"{MA.Name}, {MA.Age}, {MA.BirthDate}, {MA.HoroscopeSign}, {MA.FavouriteFood}, {MA.FavouriteBand}, {MA.FavouriteMovie}, {MA.ILove}, {MA.IHate}, {MA.SuperPower}, {MA.MotivationForProgramming}");
         listOfGroupMembers.Add(MA);
 
         GroupMember Gurra = new GroupMember();
@@ -378,7 +366,6 @@ class Program
         Gurra.IHate = "Schlager";
         Gurra.SuperPower = "Puppy whisperer";
         Gurra.MotivationForProgramming = "Creativity";
-        //Console.WriteLine($"{Gurra.Name}, {Gurra.Age}, {Gurra.BirthDate}, {Gurra.HoroscopeSign}, {Gurra.FavouriteFood}, {Gurra.FavouriteBand}, {Gurra.FavouriteMovie}, {Gurra.ILove}, {Gurra.IHate}, {Gurra.SuperPower}, {Gurra.MotivationForProgramming}");
         listOfGroupMembers.Add(Gurra);
 
         GroupMember JonnaWiberg = new GroupMember();
@@ -393,7 +380,6 @@ class Program
         JonnaWiberg.IHate = "Meet";
         JonnaWiberg.SuperPower = "Eternal life";
         JonnaWiberg.MotivationForProgramming = "Stubborness";
-        //Console.WriteLine($"{JonnaWiberg.Name}, {JonnaWiberg.Age}, {JonnaWiberg.BirthDate}, {JonnaWiberg.HoroscopeSign}, {JonnaWiberg.FavouriteFood}, {JonnaWiberg.FavouriteBand}, {JonnaWiberg.FavouriteMovie}, {JonnaWiberg.ILove}, {JonnaWiberg.IHate}, {JonnaWiberg.SuperPower}, {JonnaWiberg.MotivationForProgramming}");
         listOfGroupMembers.Add(JonnaWiberg);
 
         GroupMember Linus = new GroupMember();
@@ -408,7 +394,6 @@ class Program
         Linus.IHate = "Mustard";
         Linus.SuperPower = "Breathing under water";
         Linus.MotivationForProgramming = "To get a fun job";
-        //Console.WriteLine($"{Linus.Name}, {Linus.Age}, {Linus.BirthDate}, {Linus.HoroscopeSign}, {Linus.FavouriteFood}, {Linus.FavouriteBand}, {Linus.FavouriteMovie}, {Linus.ILove}, {Linus.IHate}, {Linus.SuperPower}, {Linus.MotivationForProgramming}");
         listOfGroupMembers.Add(Linus);
 
         GroupMember Nils = new GroupMember();
@@ -423,7 +408,6 @@ class Program
         Nils.IHate = "Slush";
         Nils.SuperPower = "Count with fingers";
         Nils.MotivationForProgramming = "Fun";
-        //Console.WriteLine($"{Nils.Name}, {Nils.Age}, {Nils.BirthDate}, {Nils.HoroscopeSign}, {Nils.FavouriteFood}, {Nils.FavouriteBand}, {Nils.FavouriteMovie}, {Nils.ILove}, {Nils.IHate}, {Nils.SuperPower}, {Nils.MotivationForProgramming}");
         listOfGroupMembers.Add(Nils);
 
         GroupMember Yulrok = new GroupMember();
@@ -438,7 +422,6 @@ class Program
         Yulrok.IHate = "Wastefullness";
         Yulrok.SuperPower = "Thought transfer";
         Yulrok.MotivationForProgramming = "Ticket to digital nomad life";
-        //Console.WriteLine($"{Yulrok.Name}, {Yulrok.Age}, {Yulrok.BirthDate}, {Yulrok.HoroscopeSign}, {Yulrok.FavouriteFood}, {Yulrok.FavouriteBand}, {Yulrok.FavouriteMovie}, {Yulrok.ILove}, {Yulrok.IHate}, {Yulrok.SuperPower}, {Yulrok.MotivationForProgramming}");
         listOfGroupMembers.Add(Yulrok);
     }
 }
