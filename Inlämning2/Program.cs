@@ -20,161 +20,21 @@ namespace Inlämning2
         private string superpower;
         private string motivationforprogramming;
 
-        public GroupMember()
-        {
-
-        }
-        public GroupMember(
-            string name,
-            int age,
-            string birthDate,
-            string favouriteFood,
-            string favouriteBand,
-            string favouriteMovie,
-            string iLove,
-            string iHate,
-            string horoscopeSign,
-            string superPower,
-            string motivationForProgramming)
-        {
-            this.Name = name;
-            this.Age = age;
-            this.BirthDate = birthDate;
-            this.FavouriteFood = favouriteFood;
-            this.FavouriteBand = favouriteBand;
-            this.FavouriteMovie = favouriteMovie;
-            this.ILove = iLove;
-            this.IHate = iHate;
-            this.HoroscopeSign = horoscopeSign;
-            this.SuperPower = superPower;
-            this.MotivationForProgramming = motivationForProgramming;
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-        public int Age
-        {
-            get
-            {
-                return age;
-            }
-            set
-            {
-                age = value;
-            }
-        }
-        public string BirthDate
-        {
-            get
-            {
-                return birthdate;
-            }
-            set
-            {
-                birthdate = value;
-            }
-        }
-        public string FavouriteFood
-        {
-            get
-            {
-                return favouritefood;
-            }
-            set
-            {
-                favouritefood = value;
-            }
-        }
-        public string FavouriteBand
-        {
-            get
-            {
-                return favouriteband;
-            }
-            set
-            {
-                favouriteband = value;
-            }
-        }
-        public string FavouriteMovie
-        {
-            get
-            {
-                return favouritemovie;
-            }
-            set
-            {
-                favouritemovie = value;
-            }
-        }
-        public string ILove
-        {
-            get
-            {
-                return ilove;
-            }
-            set
-            {
-                ilove = value;
-            }
-        }
-        public string IHate
-        {
-            get
-            {
-                return ihate;
-            }
-            set
-            {
-                ihate = value;
-            }
-        }
-        public string HoroscopeSign
-        {
-            get
-            {
-                return horoscopesign;
-            }
-            set
-            {
-                horoscopesign = value;
-            }
-        }
-        public string SuperPower
-        {
-            get
-            {
-                return superpower;
-            }
-            set
-            {
-                superpower = value;
-            }
-        }
-        public string MotivationForProgramming
-        {
-            get
-            {
-                return motivationforprogramming;
-            }
-            set
-            {
-                motivationforprogramming = value;
-            }
-        }
+        public string Name { get => name; set => name = value; }
+        public int Age { get => age; set => age = value; }
+        public string BirthDate { get => birthdate; set => birthdate = value; }
+        public string FavouriteFood { get => favouritefood; set => favouritefood = value; }
+        public string FavouriteBand { get => favouriteband; set => favouriteband = value; }
+        public string FavouriteMovie { get => favouritemovie; set => favouritemovie = value; }
+        public string ILove { get => ilove; set => ilove = value; }
+        public string IHate { get => ihate; set => ihate = value; }
+        public string HoroscopeSign { get => horoscopesign; set => horoscopesign = value; }
+        public string SuperPower { get => superpower; set => superpower = value; }
+        public string MotivationForProgramming { get => motivationforprogramming; set => motivationforprogramming = value; }
 
         public override string ToString()
         {
-            return $"{name}";
+            return $"{Name}";
         }
     }
 }
@@ -195,15 +55,15 @@ class Program
     static void Password()
     {
         Console.Write("Please enter the name of the group you are trying to reach:");
-        string password = Console.ReadLine().Trim().ToLower();
+        string password = Console.ReadLine();
 
-        while (password != "götebuggarna")
+        while (password.ToLower().Replace(" ", "") != "götebuggarna")
         {
             Console.Write("Incorrect password, try again:");
             password = Console.ReadLine();
         }
         Console.WriteLine("");
-        Console.WriteLine("Correct password, welcome in!");
+        Console.WriteLine("Correct password, welcome in to info hub for götebuggarna!");
         Meny();
     }
 
@@ -219,11 +79,12 @@ class Program
             //i.Varje deltagare skall ha en unik sträng som beskriver personens största driv till programmering.
             //c.Möjligheten att ta bort en person.
             Console.WriteLine("");
-            Console.WriteLine("What would you like to do?  The following options are available:");
+            Console.WriteLine("What would you like to do? The following options are available:");
             Console.WriteLine("1. List group members.");
             Console.WriteLine("2. Print out short bio about each member.");
             Console.WriteLine("3. Print out personal motivation for programming for each group member.");
             Console.WriteLine("4. Delete a person from the list.");
+            Console.WriteLine("5. Quit.");
 
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
@@ -232,6 +93,7 @@ class Program
                     PrintListOfGroupMembers();
                     break;
                 case 2:
+                    Console.WriteLine("");
                     PrintInfoEachGroupMembers();
                     break;
                 case 3:
@@ -240,6 +102,8 @@ class Program
                 case 4:
                     DeleteGroupMember();
                     break;
+                case 5:
+                    return;
                 default:
                     Console.WriteLine("Invalid input");
                     break;
@@ -268,6 +132,7 @@ class Program
         int counter = 1;
         foreach (GroupMember person in listOfGroupMembers)
         {
+            Console.WriteLine("");
             Console.WriteLine($"{counter}. {person.Name} has the following motivation for learning programming --> {person.MotivationForProgramming}");
             counter++;
         }
@@ -285,13 +150,14 @@ class Program
         {
             if (choice == listOfGroupMembers[i].Name)
             {
+                Console.WriteLine("");
                 Console.WriteLine($"{choice} will be removed from the group memeber list");
                 listOfGroupMembers.RemoveAt(i);
             }
         }
+        Console.WriteLine("");
         Console.WriteLine("Uppdated list of group members is: ");
         PrintListOfGroupMembers();
-
     }
 
     static void CreateGroupMember()
@@ -310,7 +176,6 @@ class Program
         Andrei.SuperPower = "Instant olive detection";
         Andrei.MotivationForProgramming = "Problem solving";
         listOfGroupMembers.Add(Andrei);
-
 
         GroupMember Jesper = new GroupMember();
         Jesper.Name = "Jesper";
