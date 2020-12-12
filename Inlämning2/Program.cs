@@ -48,7 +48,7 @@ class Program
     {
         //1.Programmet skall vid uppstart fråga användaren om en kod. Om denna kod är == med namnet på er basgrupp skall tillgång till resten av programmet ges.
         //Annars skall ett passande meddelande skrivas ut.
-        Console.WriteLine("Welcome to the information hub for Group #2");
+        Console.WriteLine("Welcome to the information hub for Basgroup #2");
         Password();
     }
 
@@ -93,7 +93,6 @@ class Program
                     PrintListOfGroupMembers();
                     break;
                 case 2:
-                    Console.WriteLine("");
                     PrintInfoEachGroupMembers();
                     break;
                 case 3:
@@ -114,19 +113,21 @@ class Program
 
     static void PrintListOfGroupMembers()
     {
+        Console.WriteLine("");
         Console.WriteLine(string.Join(", ", listOfGroupMembers));
-
     }
+
     static void PrintInfoEachGroupMembers()
     {
         int counter = 1;
         foreach (GroupMember person in listOfGroupMembers)
         {
+            Console.WriteLine("");
             Console.WriteLine($"{counter}.{person.Name}, {person.Age}, {person.BirthDate}, {person.HoroscopeSign}, {person.FavouriteFood}, {person.FavouriteBand}, {person.FavouriteMovie}, {person.ILove}, {person.IHate}, {person.SuperPower}");
             counter++;
         }
-
     }
+
     static void PrintPersonalMotivation()
     {
         int counter = 1;
@@ -137,6 +138,7 @@ class Program
             counter++;
         }
     }
+
     static void DeleteGroupMember()
     {
         Console.WriteLine("");
@@ -234,7 +236,7 @@ class Program
         listOfGroupMembers.Add(Gurra);
 
         GroupMember JonnaWiberg = new GroupMember();
-        JonnaWiberg.Name = "Jonna Wiberg";
+        JonnaWiberg.Name = "Jonna";
         JonnaWiberg.Age = 30;
         JonnaWiberg.BirthDate = "5 February";
         JonnaWiberg.HoroscopeSign = "Aquarius";
