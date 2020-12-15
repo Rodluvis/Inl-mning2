@@ -144,9 +144,9 @@ class Program
         Console.WriteLine("");
         Console.WriteLine("Which group member would you like to remove?");
 
-        string choice;
         PrintListOfGroupMembers();
-        choice = Console.ReadLine();
+       
+        string choice = Console.ReadLine();
 
         for (int i = 0; i < listOfGroupMembers.Count; i++)
         {
